@@ -1,8 +1,26 @@
 {
-  "name": "timeline-graphql",
+  "name": "timeline-graphql-users",
   "version": "1.0.0",
   "main": "src/index.js",
-  "repository": "https://github.com/K0rdan/timeline-graphql.git",
+  "repository": "https://github.com/K0rdan/timeline-graphql-users.git",
   "author": "k0rdan",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "./node_modules/.bin/babel -d dist src",
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "dependencies": {
+    "@apollo/federation": "^0.14.0",
+    "apollo-server-micro": "^2.12.0",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "micro-dev": "^3.0.0",
+    "prettier": "^2.0.4"
+  }
 }
