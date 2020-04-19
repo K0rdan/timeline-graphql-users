@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "target": "es5",
+    "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "*": ["*"],
+      "model/*": ["src/model/*"],
+      "utils/*": ["src/utils/*"]
+    },
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "strict": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

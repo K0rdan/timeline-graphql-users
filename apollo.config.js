@@ -1,5 +1,5 @@
 module.exports = {
   service: {
-    name: 'timeline-graphql-users',
+    name: 'timeline-users',
   },
 };

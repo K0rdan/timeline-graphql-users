@@ -6,21 +6,34 @@
   "author": "k0rdan",
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/babel -d dist src",
-    "start": "micro",
-    "dev": "micro-dev"
+    "build": "tsc -p .",
+    "build:dev": "tsc -w -p .",
+    "start": "micro ./dist -p 4000",
+    "start:dev": "micro-dev ./dist -p 4000",
+    "service:push": "apollo service:push --endpoint=http://localhost:3000/graphql --serviceName=timeline-graphql-users --serviceURL=http://localhost:4000"
   },
   "dependencies": {
     "@apollo/federation": "^0.14.0",
+    "apollo-graphql": "^0.4.1",
     "apollo-server-micro": "^2.12.0",
     "graphql": "^15.0.0",
-    "graphql-tag": "^2.10.3"
+    "graphql-compose": "^7.14.1",
+    "graphql-compose-mongoose": "^7.3.5",
+    "graphql-tag": "^2.10.3",
+    "graphql-tools": "^4.0.7",
+    "mongoose": "^5.9.9"
   },
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/micro": "^7.3.3",
+    "@types/mongoose": "^5.7.10",
+    "@types/node": "^13.11.1",
+    "apollo": "^2.27.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
     "micro-dev": "^3.0.0",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.4",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
   }
 }
