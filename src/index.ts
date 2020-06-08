@@ -45,7 +45,7 @@ export default mongos
       subscriptions: false,
       engine: {
         apiKey: APOLLO_KEY,
-        schemaTag: APOLLO_ENGINE_SCHEMA_TAG,
+        graphVariant: APOLLO_ENGINE_SCHEMA_TAG,
       },
       validationRules: graphQLValidationRules,
       logger,
