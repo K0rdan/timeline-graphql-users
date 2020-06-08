@@ -10,9 +10,9 @@ declare namespace NodeJS {
     MONGO_POOL_SIZE?: string | '2';
     MONGO_USERS_URL: string | 'mongodb://localhost';
     MONGO_USERS_PORT: string | '27017';
-    MONGO_USERS_COLLECTION: string | 'timeline-users';
+    MONGO_USERS_DATABASE: string | 'timeline-users';
     MONGO_LOGS_URL: string | 'mongodb://localhost';
     MONGO_LOGS_PORT: string | '27018';
-    MONGO_LOGS_COLLECTION: string | 'timeline-logs';
+    MONGO_LOGS_DATABASE: string | 'timeline-logs';
   }
 }

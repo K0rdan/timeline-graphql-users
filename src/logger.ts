@@ -17,7 +17,7 @@ export const logger = createLogger({
 export const addMongoLogTransport = (
   mongooseConnection: mongoose.Connection,
 ) => {
-  logger.push(
+  logger.add(
     // @ts-ignore
     new MongoDB({
       db: mongooseConnection,

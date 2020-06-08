@@ -3,11 +3,11 @@ import { buildFederatedSchema } from '@apollo/federation';
 import { schemaComposer } from 'graphql-compose';
 import { ValidationContext /* FieldNode, GraphQLError */ } from 'graphql';
 
-import Mongos from './mongos';
-import Logger from './logger';
+import mongos from './mongos';
+import logger from './logger';
 import './dataModel';
 
-const { APOLLO_KEY, APOLLO_ENGINE_SCHEMA_TAG } = process.env;
+const { NODE_ENV, APOLLO_KEY, APOLLO_ENGINE_SCHEMA_TAG } = process.env;
 
 const graphQLValidationRules: Array<(context: ValidationContext) => any> = [];
 // graphQLValidationRules.push((context) => {
@@ -22,11 +22,12 @@ const graphQLValidationRules: Array<(context: ValidationContext) => any> = [];
 //   };
 // });
 
-export default Mongos.init()
+export default mongos
+  .init()
   .then((results) => {
     // Initialization error handling
     if (results.findIndex((r) => r.status === 'rejected') !== -1) {
-      Logger.error('Cannot start the server...');
+      logger.error('Cannot start the server due to mongo errors...');
       process.exit();
     }
 
@@ -39,24 +40,26 @@ export default Mongos.init()
 
     const options: Config = {
       schema: buildFederatedSchema({ typeDefs: gql(typeDefs), resolvers }),
-      playground: true,
+      debug: NODE_ENV === 'development',
+      playground: NODE_ENV === 'development',
       subscriptions: false,
       engine: {
         apiKey: APOLLO_KEY,
         schemaTag: APOLLO_ENGINE_SCHEMA_TAG,
       },
       validationRules: graphQLValidationRules,
+      logger,
     };
 
     const server = new ApolloServer(options);
     return server.createHandler({
       onHealthCheck: () =>
         new Promise((resolve, reject) =>
-          Mongos.isConnectedToUsers() ? resolve() : reject(),
+          mongos.isConnectedToUsers() ? resolve() : reject(),
         ),
     });
   })
   .catch((err) => {
-    Logger.error(`Can't start the server...`, err);
+    logger.error(`Can't start the server...`, err);
     process.exit();
   });
